@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Quick Helper",
-  "description": "Quick access your require data and boost your development.",
+  "description": "Quickly access your required data and boost your development speed.",
   "version": "1.0.0",
   "icons": {
     "16": "assets/images/icon-16.png",
