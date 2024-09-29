@@ -10,3 +10,39 @@ Quickly access your required data and boost your development speed.
 - Open Chrome and go to `chrome://extensions/`.
 - Enable `Developer mode` at the top right.
 - Click `Load unpacked` and select your extension folder.
+
+### API Data
+The API response must be in this format
+```
+[
+  {
+    "section": "Section-1",
+    "data":[
+        {
+          "key": "######",
+          "value": "######"
+        },
+        {
+          "key": "######",
+          "value": "######"
+        },
+        .......
+      ]
+    },
+  {
+    "section": "Section-2",
+    "data":[
+      {
+        "key": "######",
+        "value": "######"
+      },
+      {
+        "key": "######",
+        "value": "######"
+      },
+      .......
+    ]
+  },
+  .......
+]
+```
