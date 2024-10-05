@@ -10,14 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       let main = document.querySelector('.main');
       let waitText = document.querySelector('.wait-text');
-      let wrapper = document.createElement('div'); // Initialize wrapper here
+      let wrapper = document.createElement('div');
       data.record.forEach(element => {
+        if (!element.section || !element.data) {
+          alert('Skipping element due to missing section or data', element);
+          return;  // Skip this element if data is incomplete
+        }
         let sectionName = document.createElement('span');
         sectionName.className = 'section-name';
         sectionName.innerText = element.section;
         wrapper.appendChild(sectionName);
 
         element.data.forEach((data) => {
+          if (!data.key || !data.value) {
+            alert('Skipping data entry due to missing key or value', data);
+            return;
+          }
+
           let key = document.createElement('span');
           key.className = 'section-key';
           key.innerText = data.key;
@@ -34,12 +43,22 @@ document.addEventListener('DOMContentLoaded', () => {
           // Create a container for the copy SVG
           let copyIcon = document.createElement('span');
           copyIcon.className = 'copy-icon';  // Optional class for styling
+          copyIcon.setAttribute('aria-label', 'Copy value');  // Add ARIA label for accessibility
           copyIcon.innerHTML = copySvg;
 
           // Add event listener to the copy button
           copyIcon.addEventListener('click', () => {
             navigator.clipboard.writeText(value.innerText).then(() => {
-              //TODO: add some code for success
+              // Create tooltip
+              let tooltip = document.createElement('span');
+              tooltip.className = 'tooltip';
+              tooltip.innerText = 'Copied!';
+              copyIcon.appendChild(tooltip);
+              
+              // Show tooltip for 2 seconds
+              setTimeout(() => {
+                copyIcon.removeChild(tooltip);
+              }, 2000);
             }).catch(err => {
               alert('Failed to copy text: ', err);
             });
@@ -55,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       waitText.style.display = 'none';
     })
     .catch(error => {
+      let waitText = document.querySelector('.wait-text');
       waitText.style.display = 'none';
       alert('Error fetching JSON data:', error);
     });

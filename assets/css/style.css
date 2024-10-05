@@ -2,8 +2,9 @@
   box-sizing: border-box;
 }
 
+/* Default (Light Mode) Styles */
 .main {
-  width: 300px; /* Consider using rem: e.g., 18.75rem */
+  width: 300px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -23,7 +24,7 @@ span {
   background-color: #e0e5ea;
   padding: 3px;
   padding-right: 6px;
-  border: 1px solid #e0e5ea; /* Add explicit border style */
+  border-color: #e0e5ea;
   border-radius: 4px;
   margin-bottom: 9px;
 }
@@ -56,3 +57,47 @@ span {
   font-size: 17px;
   margin-bottom: 9px;
 }
+
+/* Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1e1e1e;
+    color: #d1d5db; /* Light text color for better contrast */
+  }
+
+  .main {
+    width: 300px;
+    background-color: #252526; /* Darker background for the main container */
+  }
+
+  .value-wrap {
+    background-color: #333;
+    border-color: #333;
+  }
+
+  .section-key {
+    color: #d1d5db; /* Light text for dark backgrounds */
+  }
+
+  .section-value {
+    color: #f3f4f6; /* Slightly lighter text for values */
+  }
+
+  .octicon {
+    fill: #d1d5db; /* Light fill color for icons */
+  }
+
+  .json-item {
+    background-color: #2d2d2d; /* Darker background for each item */
+  }
+
+  .section-name {
+    color: #fff; /* White text for section names */
+  }
+
+  .copy-icon .tooltip {
+    background-color: #444; /* Dark background for the tooltip in dark mode */
+    color: #fff; /* White text for the tooltip */
+  }
+}
+
