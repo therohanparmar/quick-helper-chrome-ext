@@ -6,12 +6,12 @@ const copySvg = `<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version
 
 document.addEventListener('DOMContentLoaded', () => {
   fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    let main = document.querySelector('.main');
-    let waitText = document.querySelector('.waitText');
-    data.record.forEach(element => {
-
+    .then(response => response.json())
+    .then(data => {
+      let main = document.querySelector('.main');
+      let waitText = document.querySelector('.waitText');
+      let wrapper = document.createElement('div'); // Initialize wrapper here
+      data.record.forEach(element => {
         let sectionName = document.createElement('span');
         sectionName.className = 'section-name';
         sectionName.innerText = element.section;
@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Add event listener to the copy button
           copyIcon.addEventListener('click', () => {
             navigator.clipboard.writeText(value.innerText).then(() => {
+              //TODO: add some code for success
             }).catch(err => {
               alert('Failed to copy text: ', err);
             });
@@ -48,16 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
           wrapper.appendChild(valueWrap);
         });
 
-        valueWrap.appendChild(copyIcon);
-        wrapper.appendChild(valueWrap);
-      })
+        // Append the wrapper after processing all sections
+        main.appendChild(wrapper);
+      });
       waitText.style.display = 'none';
-      main.appendChild(wrapper);
-
+    })
+    .catch(error => {
+      waitText.style.display = 'none';
+      alert('Error fetching JSON data:', error);
     });
-  })    
-  .catch(error => {
-    waitText.style.display = 'none';
-    alert('Error fetching JSON data:', error);
-  });
-
+});
