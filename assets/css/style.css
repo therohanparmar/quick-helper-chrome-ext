@@ -1,5 +1,11 @@
 .main {
   width: 300px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.waitText {
+  font-size: medium;
+  font-weight: 700;
 }
 
 span {
