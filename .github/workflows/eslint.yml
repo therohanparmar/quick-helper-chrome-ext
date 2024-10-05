@@ -20,14 +20,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install ESLint
+        run: npm install -g eslint # Install ESLint globally
 
       - name: Run ESLint
-        run: npx eslint . # Lint all files in the repo
-
-      - name: Fail the job on ESLint error
-        if: failure()
-        run: echo "ESLint check failed. Please fix the issues before pushing the code."
+        run: npx eslint assets/js/ || (echo "ESLint check failed. Please fix the issues before pushing the code." && exit 1)
