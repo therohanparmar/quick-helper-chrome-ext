@@ -104,7 +104,7 @@ jobs:
 
       # Step 4: Install Stylelint
       - name: Install Stylelint
-        run: npm install -g stylelint
+        run:  npm install -g eslint stylelint stylelint-config-standard
 
       # Step 5: Run Stylelint for CSS
       - name: Run Stylelint
