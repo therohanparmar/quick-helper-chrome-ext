@@ -1,4 +1,4 @@
-name: Lint Code (JavaScript, HTML, CSS)
+name: Lint Code
 
 on:
   push:
