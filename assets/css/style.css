@@ -1,5 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
 .main {
-  width: 300px;
+  width: 300px; /* Consider using rem: e.g., 18.75rem */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.wait-text {
+  font-size: medium;
+  font-weight: 700;
 }
 
 span {
@@ -13,7 +23,7 @@ span {
   background-color: #e0e5ea;
   padding: 3px;
   padding-right: 6px;
-  border-color: #e0e5ea;
+  border: 1px solid #e0e5ea; /* Add explicit border style */
   border-radius: 4px;
   margin-bottom: 9px;
 }
