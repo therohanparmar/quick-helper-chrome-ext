@@ -20,7 +20,7 @@ Easily access the data you need to speed up your development work.
 
 ### API Data
 
-We use some sample data from [JSONBin](https://jsonbin.io/) to get started.
+We use some sample data from [JSONBin](https://jsonbin.io/) to get started. If you prefer to use your own API, make sure that your API's response format matches the structure of the provided sample API response structure.
 
 ```javascript
 const apiUrl = 'https://api.jsonbin.io/v3/b/670101afacd3cb34a8919055';
@@ -33,42 +33,3 @@ If you want to use your own data, follow these steps:
 2. Create a new bin with your JSON data.
 3. JSONBin will give you an API endpoint to access this data.
 4. Replace the `apiUrl` with your new API link.
-
-
-### API Response Format
-
-Make sure your API response looks like this:
-
-```
-[
-  {
-    "section": "Section-1",
-    "data":[
-        {
-          "key": "######",
-          "value": "######"
-        },
-        {
-          "key": "######",
-          "value": "######"
-        },
-        .......
-      ]
-    },
-  {
-    "section": "Section-2",
-    "data":[
-      {
-        "key": "######",
-        "value": "######"
-      },
-      {
-        "key": "######",
-        "value": "######"
-      },
-      .......
-    ]
-  },
-  .......
-]
-```
