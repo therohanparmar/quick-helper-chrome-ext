@@ -1,4 +1,4 @@
-name: Lint JavaScript
+name: Lint Code (JavaScript, HTML, CSS)
 
 on:
   push:
@@ -9,21 +9,104 @@ on:
       - master
 
 jobs:
-  lint:
-    name: Run ESLint
+  # Stage 1: Lint JavaScript
+  lint_js:
+    name: Lint JavaScript
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Cache node_modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 3: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # Step 4: Install ESLint
       - name: Install ESLint
-        run: npm install -g eslint # Install ESLint globally
+        run: npm install -g eslint
 
+      # Step 5: Run ESLint for JavaScript
       - name: Run ESLint
-        run: npx eslint assets/js/ || (echo "ESLint check failed. Please fix the issues before pushing the code." && exit 1)
+        run: |
+          npx eslint assets/js/ || (echo "ESLint check failed. Please fix the issues before pushing the code." && exit 1)
+
+  # Stage 2: Lint HTML
+  lint_html:
+    name: Lint HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Cache node_modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 3: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Step 4: Install HTMLHint
+      - name: Install HTMLHint
+        run: npm install -g htmlhint
+
+      # Step 5: Run HTMLHint for HTML
+      - name: Run HTMLHint
+        run: |
+          npx htmlhint assets/*.html || (echo "HTMLHint check failed. Please fix the issues before pushing the code." && exit 1)
+
+  # Stage 3: Lint CSS
+  lint_css:
+    name: Lint CSS
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Cache node_modules
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 3: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Step 4: Install Stylelint
+      - name: Install Stylelint
+        run: npm install -g stylelint
+
+      # Step 5: Run Stylelint for CSS
+      - name: Run Stylelint
+        run: |
+          npx stylelint assets/css/*.css || (echo "Stylelint check failed. Please fix the issues before pushing the code." && exit 1)
