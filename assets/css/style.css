@@ -71,8 +71,8 @@ span {
   }
 
   .value-wrap {
-    background-color: #333;
-    border-color: #333;
+    background-color: #333333;
+    border-color: #333333;
   }
 
   .section-key {
@@ -92,7 +92,7 @@ span {
   }
 
   .section-name {
-    color: #fff; /* White text for section names */
+    color: #ffffff; /* White text for section names */
   }
 
   .copy-icon .tooltip {
