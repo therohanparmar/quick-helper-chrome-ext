@@ -1,0 +1,41 @@
+@media (prefers-color-scheme: dark) {
+    body {
+      background-color: $dark-bg;
+      color: $dark-text;
+    }
+  
+    .main {
+      background-color: $dark-main-bg;
+    }
+  
+    .value-wrap {
+      background-color: $dark-item-bg;
+      border-color: $dark-item-bg;
+    }
+  
+    .section-key {
+      color: $dark-text;
+    }
+  
+    .section-value {
+      color: $dark-value-text;
+    }
+  
+    .octicon {
+      fill: $dark-icon-fill;
+    }
+  
+    .json-item {
+      background-color: $dark-item-bg;
+    }
+  
+    .section-name {
+      color: $dark-tooltip-text;
+    }
+  
+    .copy-icon .tooltip {
+      background-color: $dark-tooltip-bg;
+      color: $dark-tooltip-text;
+    }
+  }
+  

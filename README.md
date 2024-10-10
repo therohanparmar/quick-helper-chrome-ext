@@ -1,6 +1,59 @@
 # Quick Helper - Chrome Extension
 Easily access the data you need to speed up your development work.
 
+## Getting Started
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/en/download/) installed. The project requires `npm` to run the build process.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/therohanparmar/quick-helper-chrome-ext.git
+   cd quick-helper-chrome-ext`
+   ```
+2. Install the dependencies:
+```bash
+	npm install
+```
+----
+### Running the Build Process
+To compile both JavaScript and SCSS, run the following command:
+```bash
+ npm run build
+```
+
+This command will bundle the JavaScript files and compile the SCSS into CSS. You will find the output in the dist folder.
+
+### Watch for Changes
+You can watch for changes during development to automatically recompile your files.
+
+#### JavaScript
+    npm run watch
+This will watch for changes in JavaScript files and re-bundle them when changes are detected.
+
+#### SCSS:
+
+bash
+```bash
+npm run watch-scss
+```
+This will watch for changes in SCSS files and recompile them to CSS automatically.
+
+##### Folder Structure
+`src/`: Contains the source files for both JavaScript and SCSS.
+`dist/`: Contains the compiled files after running the build process.
+
+#### Notes
+Make sure to run `npm install` before running any build or watch commands.
+
+If you encounter any issues, ensure all dependencies are installed and up to date by running:
+
+    npm install
+
+----
 ## Setup
 
 ### Download the Extension

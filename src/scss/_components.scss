@@ -1,0 +1,51 @@
+.wait-text {
+    font-size: medium;
+    font-weight: 700;
+  }
+  
+  span {
+    display: inline-block;
+  }
+  
+  .value-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $light-bg;
+    padding: 3px;
+    padding-right: 6px;
+    border-color: $light-border;
+    border-radius: 4px;
+    margin-bottom: 9px;
+  }
+  
+  .section-key,
+  .section-value {
+    font-size: 15px;
+    margin: 1.5px;
+  }
+  
+  .section-key {
+    font-weight: 500;
+  }
+  
+  .section-value {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .octicon {
+    cursor: pointer;
+  }
+  
+  .json-item {
+    margin-bottom: 25px;
+  }
+  
+  .section-name {
+    display: block;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 9px;
+  }
+  
