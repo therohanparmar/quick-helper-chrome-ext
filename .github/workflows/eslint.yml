@@ -34,9 +34,9 @@ jobs:
         with:
           node-version: '20'
 
-      # Step 4: Install ESLint
-      - name: Install ESLint
-        run: npm install -g eslint
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
       # Step 5: Run ESLint for JavaScript
       - name: Run ESLint
@@ -68,9 +68,9 @@ jobs:
         with:
           node-version: '20'
 
-      # Step 4: Install HTMLHint
-      - name: Install HTMLHint
-        run: npm install -g htmlhint
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
       # Step 5: Run HTMLHint for HTML
       - name: Run HTMLHint
@@ -78,7 +78,7 @@ jobs:
           npx htmlhint src/html/*.html || (echo "HTMLHint check failed. Please fix the issues before pushing the code." && exit 1)
 
   # Stage 3: Lint SCSS
-  lint_scss:
+  lint_css:
     name: Lint SCSS
     runs-on: ubuntu-latest
 
@@ -102,11 +102,11 @@ jobs:
         with:
           node-version: '20'
 
-      # Step 4: Install Stylelint
-      - name: Install Stylelint
-        run: npm install -g eslint stylelint stylelint-config-standard-scss
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
 
       # Step 5: Run Stylelint for SCSS
       - name: Run Stylelint
         run: |
-          npx stylelint src/scss/*.scss || (echo "Stylelint check failed. Please fix the issues before pushing the code." && exit 1)
+          npx stylelint src/scss/**/*.scss || (echo "Stylelint check failed. Please fix the issues before pushing the code." && exit 1)
