@@ -1,3 +1,5 @@
+import '../scss/style.scss';
+
 const apiUrl = 'https://api.jsonbin.io/v3/b/670101afacd3cb34a8919055';
 
 const copySvg = `<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
