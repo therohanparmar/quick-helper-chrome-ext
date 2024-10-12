@@ -19,6 +19,5 @@ export const copyToClipboard = (text, copyIcon) => {
         copyIcon.removeChild(tooltip); // Remove tooltip
       }, 1500);
     }).catch(err => {
-      console.error('Failed to copy text: ', err);
     });
 };

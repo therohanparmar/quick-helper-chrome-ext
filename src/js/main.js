@@ -8,7 +8,6 @@ const apiUrl = 'https://api.jsonbin.io/v3/b/670101afacd3cb34a8919055';
 document.addEventListener('DOMContentLoaded', async () => {
   const main = document.querySelector('.main');
   if (!main) {
-    console.error("Main element not found");
     return;
   }
 

@@ -2,9 +2,9 @@ import Swal from 'sweetalert2';
 
 export const showLoader = () => {
   Swal.fire({
-    title: "Quick Helper is scanning your website",
-    html: "Please wait while we fetch the data...",
-    icon: "info",
+    title: 'Quick Helper is scanning your website',
+    html: 'Please wait while we fetch the data...',
+    icon: 'info',
     willOpen: () => {
       Swal.showLoading();
     }
@@ -26,8 +26,8 @@ export const showError = (message) => {
 
 export const updateSuccess = () => {
   Swal.update({
-    title: "Data Retrieved!",
-    html: "We have successfully fetched the data.",
-    icon: "success"
+    title: 'Data Retrieved!',
+    html: 'We have successfully fetched the data.',
+    icon: 'success'
   });
 };
