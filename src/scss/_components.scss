@@ -1,51 +1,50 @@
 .wait-text {
-    font-size: medium;
-    font-weight: 700;
-  }
-  
-  span {
-    display: inline-block;
-  }
-  
-  .value-wrap {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $light-bg;
-    padding: 3px;
-    padding-right: 6px;
-    border-color: $light-border;
-    border-radius: 4px;
-    margin-bottom: 9px;
-  }
-  
-  .section-key,
-  .section-value {
-    font-size: 15px;
-    margin: 1.5px;
-  }
-  
-  .section-key {
-    font-weight: 500;
-  }
-  
-  .section-value {
-    flex-grow: 1;
-    margin-right: 10px;
-  }
-  
-  .octicon {
-    cursor: pointer;
-  }
-  
-  .json-item {
-    margin-bottom: 25px;
-  }
-  
-  .section-name {
-    display: block;
-    font-weight: bold;
-    font-size: 17px;
-    margin-bottom: 9px;
-  }
-  
+  font-size: medium;
+  font-weight: 700;
+  margin-bottom: 20px; // Added margin for better spacing
+}
+
+span {
+  display: inline-block;
+}
+
+.value-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $light-bg;
+  padding: 8px; // Increased padding for more space around content
+  border: 1px solid $light-border; // Added a border for better distinction
+  border-radius: 4px;
+  margin-bottom: 12px; // Better spacing between items
+}
+
+.section-key,
+.section-value {
+  font-size: 15px;
+  margin: 2px;
+}
+
+.section-key {
+  font-weight: 600; // Made it more distinct from the value
+}
+
+.section-value {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.octicon {
+  cursor: pointer;
+}
+
+.json-item {
+  margin-bottom: 25px;
+}
+
+.section-name {
+  display: block;
+  font-weight: bold;
+  font-size: 18px; // Increased font size for section headers
+  margin-bottom: 12px; // Better spacing
+}

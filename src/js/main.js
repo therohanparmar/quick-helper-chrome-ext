@@ -1,83 +1,78 @@
 import '../scss/style.scss';
+import { fetchData } from './api';
+import { showLoader, hideLoader, showError, updateSuccess } from './ui';
+import { copyToClipboard } from './clipboard';
 
 const apiUrl = 'https://api.jsonbin.io/v3/b/670101afacd3cb34a8919055';
 
-const copySvg = `<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+document.addEventListener('DOMContentLoaded', async () => {
+  const main = document.querySelector('.main');
+  if (!main) {
+    return;
+  }
+
+  showLoader();
+
+  try {
+    const data = await fetchData(apiUrl);
+
+    const wrapper = document.createElement('div');
+    
+    data.record.forEach(element => {
+      if (!element.section || !element.data) {
+        showError('Skipping element due to missing section or data');
+        return;
+      }
+
+      // Section Name
+      const sectionName = document.createElement('span');
+      sectionName.className = 'section-name';
+      sectionName.innerText = element.section;
+      wrapper.appendChild(sectionName);
+
+      // Section Data
+      element.data.forEach(data => {
+        if (!data.key || !data.value) {
+          showError('Skipping data entry due to missing key or value');
+          return;
+        }
+
+        const key = document.createElement('span');
+        key.className = 'section-key';
+        key.innerText = data.key;
+        wrapper.appendChild(key);
+
+        const valueWrap = document.createElement('div');
+        valueWrap.className = 'value-wrap';
+
+        const value = document.createElement('span');
+        value.className = 'section-value';
+        value.innerText = data.value;
+        valueWrap.appendChild(value);
+
+        // Copy Icon
+        const copyIcon = document.createElement('span');
+        copyIcon.className = 'copy-icon';
+        copyIcon.innerHTML = `<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
 <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
 </svg>`;
-
-document.addEventListener('DOMContentLoaded', () => {
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      let main = document.querySelector('.main');
-      let waitText = document.querySelector('.wait-text');
-      let wrapper = document.createElement('div');
-      data.record.forEach(element => {
-        if (!element.section || !element.data) {
-          alert('Skipping element due to missing section or data', element);
-          return;  // Skip this element if data is incomplete
-        }
-        let sectionName = document.createElement('span');
-        sectionName.className = 'section-name';
-        sectionName.innerText = element.section;
-        wrapper.appendChild(sectionName);
-
-        element.data.forEach((data) => {
-          if (!data.key || !data.value) {
-            alert('Skipping data entry due to missing key or value', data);
-            return;
-          }
-
-          let key = document.createElement('span');
-          key.className = 'section-key';
-          key.innerText = data.key;
-          wrapper.appendChild(key);
-
-          let valueWrap = document.createElement('div');
-          valueWrap.className = 'value-wrap';
-          
-          let value = document.createElement('span');
-          value.className = 'section-value';
-          value.innerText = data.value;
-          valueWrap.appendChild(value);
-
-          // Create a container for the copy SVG
-          let copyIcon = document.createElement('span');
-          copyIcon.className = 'copy-icon';  // Optional class for styling
-          copyIcon.setAttribute('aria-label', 'Copy value');  // Add ARIA label for accessibility
-          copyIcon.innerHTML = copySvg;
-
-          // Add event listener to the copy button
-          copyIcon.addEventListener('click', () => {
-            navigator.clipboard.writeText(value.innerText).then(() => {
-              // Create tooltip
-              let tooltip = document.createElement('span');
-              tooltip.className = 'tooltip';
-              tooltip.innerText = 'Copied!';
-              copyIcon.appendChild(tooltip);
-              
-              // Show tooltip for 2 seconds
-              setTimeout(() => {
-                copyIcon.removeChild(tooltip);
-              }, 2000);
-            }).catch(err => {
-              alert('Failed to copy text: ', err);
-            });
-          });
-
-          valueWrap.appendChild(copyIcon);
-          wrapper.appendChild(valueWrap);
+        
+        copyIcon.addEventListener('click', () => {
+          copyToClipboard(value.innerText, copyIcon);
         });
 
-        // Append the wrapper after processing all sections
-        main.appendChild(wrapper);
+        valueWrap.appendChild(copyIcon);
+        wrapper.appendChild(valueWrap);
       });
-      waitText.style.display = 'none';
-    })
-    .catch(error => {
-      let waitText = document.querySelector('.wait-text');
-      waitText.style.display = 'none';
-      alert('Error fetching JSON data:', error);
     });
+
+    main.appendChild(wrapper);
+
+    updateSuccess();
+    setTimeout(() => hideLoader(), 2000);
+
+  } catch (error) {
+    showError(error.message);
+    hideLoader();
+  }
 });
