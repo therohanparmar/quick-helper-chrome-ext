@@ -77,9 +77,9 @@ jobs:
         run: |
           npx htmlhint src/html/*.html || (echo "HTMLHint check failed. Please fix the issues before pushing the code." && exit 1)
 
-  # Stage 3: Lint CSS
-  lint_css:
-    name: Lint CSS
+  # Stage 3: Lint SCSS
+  lint_scss:
+    name: Lint SCSS
     runs-on: ubuntu-latest
 
     steps:
