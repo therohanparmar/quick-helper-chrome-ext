@@ -27,11 +27,8 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "webpack-cli": "^5.1.4"
-<<<<<<< HEAD
   },
   "dependencies": {
     "sweetalert2": "^11.14.2"
-=======
->>>>>>> 1833eea221fa6699af7a18912cef0872060e8b01
   }
 }
