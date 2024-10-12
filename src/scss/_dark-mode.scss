@@ -1,41 +1,64 @@
 @media (prefers-color-scheme: dark) {
-    body {
-      background-color: $dark-bg;
-      color: $dark-text;
+  body {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
+
+  .main {
+    background-color: $dark-main-bg;
+  }
+
+  .value-wrap {
+    background-color: $dark-item-bg;
+    border-color: $dark-item-bg;
+  }
+
+  .section-key {
+    color: $dark-text;
+  }
+
+  .section-value {
+    color: $dark-value-text;
+  }
+
+  .octicon {
+    fill: $dark-icon-fill;
+  }
+
+  .json-item {
+    background-color: $dark-item-bg;
+  }
+
+  .section-name {
+    color: $dark-text; // Corrected to use $dark-text instead of tooltip color
+  }
+}
+.copy-icon {
+  display: inline-block;
+  cursor: pointer;
+
+  svg {
+    fill: currentColor; // Ensures the SVG inherits the current text color
+    width: 16px; // Match the dimensions you've set in the SVG tag
+    height: 16px;
+    transition: fill 0.2s ease; // Adds smooth color transition
+
+    // Ensure proper visibility in light and dark modes
+    @media (prefers-color-scheme: dark) {
+      fill: #d1d5db; // A light color for dark mode
     }
-  
-    .main {
-      background-color: $dark-main-bg;
-    }
-  
-    .value-wrap {
-      background-color: $dark-item-bg;
-      border-color: $dark-item-bg;
-    }
-  
-    .section-key {
-      color: $dark-text;
-    }
-  
-    .section-value {
-      color: $dark-value-text;
-    }
-  
-    .octicon {
-      fill: $dark-icon-fill;
-    }
-  
-    .json-item {
-      background-color: $dark-item-bg;
-    }
-  
-    .section-name {
-      color: $dark-tooltip-text;
-    }
-  
-    .copy-icon .tooltip {
-      background-color: $dark-tooltip-bg;
-      color: $dark-tooltip-text;
+
+    @media (prefers-color-scheme: light) {
+      fill: #000; // A dark color for light mode
     }
   }
-  
+
+  &:hover svg {
+    fill: #007bff; // Change color on hover (blue in this case)
+  }
+
+  &:active svg {
+    fill: #28a745; // Change color when active (green in this case)
+  }
+}
+
